@@ -76,6 +76,41 @@ To start the production server:
 npm run start
 ```
 
+
+## Docker
+
+You can also run the Amurex Web application using Docker.
+
+### Building the Docker Image
+
+Build the docker image from the root directory of the project:
+```
+docker build -t amurex-web .
+```
+
+### Running the Container
+
+Run the container by mapping port 3000 and loading environment variables from your `.env` file:
+```
+docker run -p 3000:3000 --env-file .env amurex-web
+```
+
+Alternatively, you can specify the required environment variables directly:
+```
+docker run -p 3000:3000 \
+  -e NEXT_PUBLIC_SUPABASE_URL=your_supabase_url \
+  -e NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key \
+  -e SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key \
+  -e SUPABASE_ANON_KEY=your_supabase_anon_key \
+  -e SUPABASE_URL=your_supabase_url \
+  -e OPENAI_API_KEY=your_openai_api_key \
+  -e NEXT_PUBLIC_BASE_URL=your_base_url \
+  amurex-web
+```
+
+This container will start the application on port 3000.
+
+
 ### Learn More
 
 To learn more about Next.js, check out:
@@ -83,4 +118,5 @@ To learn more about Next.js, check out:
 - [Next.js Documentation](https://nextjs.org/docs)
 
 - [Learn Next.js](https://nextjs.org/docs)
+
 
